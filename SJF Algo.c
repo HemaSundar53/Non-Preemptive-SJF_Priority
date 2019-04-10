@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<conio.h>
+#include<unistd.h>
 
 struct process{
     int arrival;
@@ -143,3 +144,10 @@ int main()
         printf("   P%d\t\t%d\t   %d\t\t    %d\t\t   %d\t\t    %d\t\t\t%d\t\t     %.2f\n",p[i].p_no,p[i].arrival,p[i].burst,p[i].start_tym,p[i].end_tym,p[i].waiting,p[i].turn_around,p[i].priority);
     }
 
+    float ex1=0,ey1=0;
+    for(int i=0;i<n;i++)
+    {
+        ex1=(float)p[i].waiting+ex1;
+        ey1=(float)p[i].turn_around+ey1;
+    }
+    printf("\n\tAVERAGE WAITING TIME IS %.2f\n\tAVERAGE TURN AROUND TIME IS %.2f\n",ex1/n,ey1/n);
