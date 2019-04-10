@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<conio.h>
+#include<unistd.h>
 
 struct process{
     int arrival;
