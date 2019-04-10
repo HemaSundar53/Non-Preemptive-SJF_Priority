@@ -112,7 +112,7 @@ int main()
         x++;
     }
 
-    // CALCULATION OF START TIME, END TIME AND WAITING TIME
+    // CALCULATION OF START TIME, END TIME AND WAITING TIME, TURN AROUND TIME
     for(int i=0;i<n;i++)
     {
         if(i==0 || p[i].arrival>p[i-1].end_tym)
@@ -125,4 +125,21 @@ int main()
         }
         p[i].end_tym=p[i].start_tym+p[i].burst;
         p[i].waiting=p[i].start_tym-p[i].arrival;
+        p[i].turn_around=p[i].waiting+p[i].burst;
+       // p[i].turn_around=p[i].waiting+p[i].burst;
     }
+
+    // PRIORITY CALCULATION
+    for(int i=0;i<n;i++)
+    {
+        p[i].priority=1+((float)p[i].waiting/(float)p[i].burst);
+    }
+
+    // PRINTING SJF INFO BEFORE PRIORITY SORTING
+    printf("\n\n\nORDER OF EXECUTION BY SJF:\n");
+    printf("\nProcess\t Arrival Time\tBurst Time\tStart Time\tEnd Time\tWaiting Time\tTurn Around Time   Priority\n");
+    for(int i=0;i<n;i++)
+    {
+        printf("   P%d\t\t%d\t   %d\t\t    %d\t\t   %d\t\t    %d\t\t\t%d\t\t     %.2f\n",p[i].p_no,p[i].arrival,p[i].burst,p[i].start_tym,p[i].end_tym,p[i].waiting,p[i].turn_around,p[i].priority);
+    }
+
